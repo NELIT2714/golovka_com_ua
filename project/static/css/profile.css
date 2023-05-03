@@ -1,0 +1,160 @@
+.profile-section {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-window {
+    min-height: 40rem;
+    width: 100%;
+    background-color: white;
+    border: 1.6px solid #eaeaea;
+    padding: 1.2rem;
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.profile-nav {
+    height: 100%;
+    width: 20rem;
+    border-right: 1px solid lightgray;
+    padding-right: 1rem;
+}
+
+.profile-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-links li {
+    background-color: #eaeaea;
+    padding: 1rem;
+    transition: .3s all;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.profile-links li.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.profile-links li:not(:last-child) {
+    border-bottom: 0.1px solid lightgray;
+}
+
+.profile-links li > i {
+    font-size: 12pt;
+    margin-right: 5px;
+}
+
+.profile-links a {
+    color: black;
+}
+
+.profile-content {
+    overflow: auto;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* forms */
+
+.forms {
+    display: flex;
+    gap: 1rem;
+}
+
+.forms form {
+    height: max-content;
+}
+
+/* admin */
+
+.admin-info-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.admin-info-title {
+    font-size: 14pt;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.admin-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-btn {
+    padding: 8px 1rem;
+    width: 15rem;
+    background-color: #007bff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all .3s;
+    color: white;
+    outline: none;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* User Main Info */
+
+.user-main-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border: 1.6px solid #eaeaea;
+    width: 50rem;
+    padding: 2rem;
+}
+
+.info-form input {
+    border-bottom: 1.2px solid #eaeaea;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    padding: 0 0px 5px 0px;
+    transition: .3s all;
+}
+
+.info-form input:focus{
+    border-bottom: 1.5px solid #0062cc;
+}
+
+.info-form input:disabled {
+    background: none;
+    color: black;
+}
+
+.user-main-info input {
+    width: 20rem;
+}
+
+.row {
+    gap: 10px !important;
+}
+
+.form-title {
+    font-size: 12pt;
+    font-weight: 900;
+    text-transform: uppercase;
+}

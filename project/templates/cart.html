@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - Кошик
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="block-title">
+            Кошик
+        </div>
+        {% if total_amount > 0 %}
+        <div class="cart-section">
+            <div class="cart-content" id="cart-content">
+                {% for index, product in enumerate(cart) %}
+                    <form class="product-cart" id="remove-from-cart-{{ index }}">
+                        <input type="hidden" name="product_id" id="product_id" value="{{ product.id }}">
+
+                        <div class="product-cart-header">
+                            <div class="product-cart-image">
+                                <img src="{{ url_for('static', filename='users_images/') }}{{ product.image }}" alt="Product Image - {{ product.id }}">
+                            </div>
+                            <div class="product-cart-name">
+                                <a href="/catalog/{{ product.category }}/product/{{ product.id }}">{{ product.name }}</a>
+                            </div>
+                            <!-- <div class="product-cart-id">
+                                <strong>ID:</strong> {{ product.id }}
+                            </div> -->
+                        </div>
+
+                        <div class="column-cart info-footer">
+                            <div class="amount-btns" id="amount-btns">
+                                <button type="button" class="btn" id="amount-add">+</button>
+                                <input type="number" name="amount" id="amount" value="{{ product.amount }}">
+                                <button type="button" class="btn" id="amount-minus">-</button>
+                            </div>
+                            <div class="product-cart-price">
+                                <span class="price-cart">{{ "{0:,}".format(product.finall_price).replace(',', ' ') }}</span> грн.
+                            </div>
+                        </div>
+
+                        <button class="btn remove-from-cart"><i class="bi bi-trash3-fill"></i></button>
+                    </form>
+                {% endfor %}
+            </div>
+            <div class="order-info-block">
+                <div class="order-info">
+                    
+                    <div class="order-info-content">
+                        <div class="order-info-title">
+                            Деталі замовлення
+                        </div>
+                        <div class="order-info-main">
+                            <div class="products-in-cart">
+                                Продуктів у кошику: <span class="total-amount">{{ total_amount }}</span>
+                            </div>
+                            <div class="price-in-cart">
+                                Разом: <span class="total-price-cart">{{ "{0:,}".format(total_price).replace(',', ' ') }}</span> грн.
+                            </div>
+                        </div>
+                        <div class="order-info-btns">
+                            <a href="{{ url_for('ordering') }}"><button class="btn">Оформлення замовлення</button></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="cart-section cart-empty">
+            <div class="cart-info">
+                В корзині поки що немає продуктів :(
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}

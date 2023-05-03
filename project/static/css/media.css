@@ -1,0 +1,32 @@
+@media screen and (max-width: 980px) {
+    nav {
+        display: none !important;
+    }
+
+    .nav-btns {
+        display: none !important;
+    }
+    
+    .logo {
+        display: none !important;
+    }
+
+    .block-title {
+        font-size: 20pt !important;
+    }
+
+    main {
+        padding: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    footer {
+        justify-content: space-between !important;
+    }
+
+    .footer-logo, 
+    .logo-foot {
+        display: none !important;
+    }
+}

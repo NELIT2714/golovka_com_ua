@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - Створення облікового запису
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="sign-up-content">
+            <form class="form" id="register-form">
+                <div class="form-title">
+                    <h1>Створення облікового запису</h1>
+                </div>
+                <div class="row">
+                    <label for="email">Електронна скринька</label>
+                    <input type="email" name="email" id="email" placeholder="golovka@gmail.com" required>
+                </div>
+                <div class="row">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" id="password" placeholder="Ваш пароль" required>
+                </div>
+                <div class="row">
+                    <label for="confirm-password">Повтор пароля</label>
+                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Повтор пароля" required>
+                </div>
+
+                <div id="message"></div>
+                <div class="info-login">
+                    <button class="btn" id="reg-btn">Створити обліковий запис</button>
+                    <a href="{{ url_for('sign_in') }}">Вже маєте обліковий запис?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

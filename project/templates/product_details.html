@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - {{ product.name }}
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="product-details-content">
+            <div class="product-details">
+                <div class="product-details-main-info">
+                    <div class="product-details-image">
+                        <img src="{{ url_for('static', filename='users_images/') }}{{ product.image }}" alt="Product - {{ product.id }}">
+                    </div>
+                    <div class="product-details-main">
+                        <div class="product-details-info">
+                            <div class="product-details-name">
+                                <h2>{{ product.name }}</h2>
+                                <hr>
+                                <div class="product-details-primary-info">
+                                    <div class="stock"><i class="bi bi-check-circle-fill"></i> В наявності</div>
+                                    <div class="article"><i class="bi bi-info-circle-fill"></i> ID: {{ product.id }}</div>
+                                </div>
+                            </div>
+
+                            <div class="product-details-price">
+                                {{ "{0:,}".format(convert_to_uah(product.price)).replace(',', ' ') + " грн." }}
+                            </div>
+            
+                            <div class="product-details-description">
+                                <p>{{ product.short_description }}</p>
+                            </div>
+                        </div>
+                        <div class="product-details-block product-info">
+                            <div class="product-details-block-title">
+                                <h3><i class="bi bi-info-circle-fill"></i> Інформація</h3>
+                            </div>
+                            <div class="product-details-block-text">
+                                Якщо у Вас виникли запитання що до цього продукту, то Ви можете їх задати подзвонив на цей номер телефону: +38 (099) 999 9999
+                            </div>
+                        </div>
+                        <form class="product-details-btns" id="add-to-cart">
+                            <input type="hidden" name="product_id" id="product_id" value="{{ product.id }}">
+
+                            <div class="buy-btn">
+                                <button class="btn" id="to_cart_btn" type="submit">До кошика</button>
+                            </div>
+                            <div class="amount-btns" id="amount-btns">
+                                <button type="button" class="btn" id="amount-add">+</button>
+                                <input type="number" name="amount" id="amount" value="1" readonly>
+                                <button type="button" class="btn" id="amount-minus">-</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="product-details-blocks">
+                    <div class="product-details-block">
+                        <div class="product-details-block-info">
+                            <div class="product-details-block-title">
+                                <h2>Гарантія</h2>
+                            </div>
+                            <img src="{{ url_for('static', filename='images/garant.png') }}">
+                            <div class="product-details-block-text">
+                                <p><i class="bi bi-check"></i> Обмін/повернення товару на протязі 14 днів</p>
+                                <p><i class="bi bi-check"></i> Гарантія 100%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details-block">
+                        <div class="product-details-block-info">
+                            <div class="product-details-block-title">
+                                <h2>Доставка</h2>
+                            </div>
+                            <img src="{{ url_for('static', filename='images/delivery.png') }}">
+                            <div class="product-details-block-text">
+                                <p><i class="bi bi-check"></i> Швидка доставка</p>
+                                <p><i class="bi bi-check"></i> Доставка по всій Україні</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-more-info">
+            <div class="product-info-title">
+                <h2>Опис продукту</h2>
+            </div>
+            <div class="product-info-content">
+                {{ product.html_description|safe }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - Інтернет магазин
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="categories-content">
+            <div class="block-title">
+                Категорії
+            </div>
+            <div class="block-categories">
+                {% for category in categories %}
+                    <div class="category">
+                        <div class="category-name">
+                            <h3>{{ category.name }}</h3>
+                        </div>
+                        <div class="category-image">
+                            <img src="{{ url_for('static', filename='users_images/') }}{{ category.image }}" alt="Category Image - {{ category.id }}">
+                        </div>
+                        <div class="category-btn">
+                            <a href="/catalog/{{ category.id }}"><button class="btn">Перейти до продуктів</button></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="block-section" id="contacts">
+        <div class="block-title">
+            Форма зворотнього зв'язку
+        </div>
+        <div class="contacts-content">
+            <form class="form">
+                <div class="row">
+                    <label for="name"><span style="color: red;">*</span> Ім'я</label>
+                    <input type="text" name="name" id="name" placeholder="Іван">
+                </div>
+                <div class="row">
+                    <label for="name"><span style="color: red;">*</span> Номер телефону</label>
+                    <input type="number" name="phone_number" id="phone_number" placeholder="+380999999999">
+                </div>
+                <div class="row">
+                    <label for="message"><span style="color: red;">*</span> Повідомлення</label>
+                    <textarea name="message" id="message" placeholder="Повідомлення для нас"></textarea>
+                </div>
+
+                <button class="btn">Відправити</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - Оформлення замовлення
+{% endblock %}
+
+{% block main %}
+    <section class="block-section ordering">
+        <div class="block-title">
+            Оформлення замовлення
+        </div>
+        <div class="ordering-section">
+            <div class="ordering-content">
+                <form class="form ordering-form" id="ordering">
+                    <div class="ordering-title">
+                        Дані одержувача
+                    </div>
+                    <div class="row">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="row">
+                        <label for="name">Ім'я</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="row">
+                        <label for="surname">Прізвище</label>
+                        <input type="text" name="surname" id="surname" required>
+                    </div>
+                    <div class="row">
+                        <label for="by_father">По батькові</label>
+                        <input type="text" name="by_father" id="by_father" required>
+                    </div>
+                    <div class="row">
+                        <label for="phone">Номер телефону</label>
+                        <input type="number" name="phone" id="phone" required>
+                    </div>
+                    <div class="row">
+                        <label for="city">Місто</label>
+                        <input type="text" name="city" id="city" required>
+                    </div>
+                    <div class="row">
+                        <label for="adress">Адреса почтового відділення</label>
+                        <input type="text" name="adress" id="adress" required>
+                    </div>
+
+                    <button class="btn">Перейти до оплати</button>
+                </form>
+                <div class="ordering-cart">
+                    <div class="ordering-cart-title">
+                        Замовлення
+                    </div>
+                    <div class="ordering-cart-content">
+                        <div class="ordering-cart-products">
+                            {% for product in cart %}
+                                <a href="/catalog/{{ product.category }}/product/{{ product.id }}">
+                                    <div class="ordering-product">
+                                        <div class="ordering-product-image">
+                                            <img src="{{ url_for('static', filename='users_images/') }}{{ product.image }}" alt="Product Image - {{ product.id }}">
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div class="ordering-main-info">
+                            <div class="products-in-cart">
+                                Продуктів у кошику: <span class="total-amount">{{ total_amount }}</span>
+                            </div>
+                            <div class="price-in-cart">
+                                Разом: <span class="total-price-cart">{{ "{0:,}".format(total_price).replace(',', ' ') }}</span> грн.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

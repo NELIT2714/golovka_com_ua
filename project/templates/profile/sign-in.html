@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - Авторизація
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="sign-up-content">
+            <form class="form" id="login-form">
+                <div class="form-title">
+                    <h1>Вхід до особистого кабінету</h1>
+                </div>
+                <div class="row">
+                    <label for="email">Електронна скринька</label>
+                    <input type="email" name="email" id="email" placeholder="golovka@gmail.com" required>
+                </div>
+                <div class="row">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" id="password" placeholder="Ваш пароль" required>
+                </div>
+
+                <div id="message"></div>
+                <div class="info-login">
+                    <button class="btn" id="reg-btn">Увійти</button>
+                    <a href="{{ url_for('sign_up') }}">Ще не створили обліковий запис?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

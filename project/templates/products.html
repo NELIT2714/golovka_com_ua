@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Golovka - {{ category.name }}
+{% endblock %}
+
+{% block main %}
+    <section class="block-section">
+        <div class="block-title">
+            {{ category.name }}
+        </div>
+        <div class="category-content">
+            {% for product in products %}
+                <div class="product">
+                    <div class="product-image">
+                        <img src="{{ url_for('static', filename='users_images/') }}{{ product.image }}" alt="Product - {{ product.id }}">
+                    </div>
+                    <div class="product-name">
+                        <a href="/catalog/{{ category.id }}/product/{{ product.id }}">{{ product.name }}</a>
+                    </div>
+
+                    <div class="product-price">
+                        {{ "{0:,}".format(convert_to_uah(product.price)).replace(',', ' ') + " грн." }}
+                    </div>
+                    <div class="product-btns">
+                        <a href="/catalog/{{ product.category_id }}/product/{{ product.id }}"><button>Перейти до продукта</button></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

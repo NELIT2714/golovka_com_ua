@@ -1,0 +1,78 @@
+<div class="users-content">
+    <table class="users-table">
+        <tr>
+            <th>ID</th>
+            <th>Ім'я продукту</th>
+            <th>Ціна ($)</th>
+            <th>Категорія</th>
+            <th>Дата добавлення</th>
+          </tr>
+          {% for product in products %}
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category_id }}</td>
+            <td>{{ product.date }}</td>
+          </tr>
+          {% endfor %}
+    </table>
+</div>
+
+<div class="forms">
+    {% if user.admin %}
+        <form class="form" id="add-product" enctype="multipart/form-data">
+            <div class="form-title">
+                <h1>Додати товар</h1>
+            </div>
+            <div class="row">
+                <label for="name">Назва товару</label>
+                <input type="text" name="name" id="name" placeholder="Назва продукту" required>
+            </div>
+            <div class="row">
+                <label for="price">Ціна в $ (буде сконвертовано в грн.)</label>
+                <input type="number" name="price" id="price" placeholder="Ціна в $ (буде сконвертовано в грн.)">
+            </div>
+            <div class="row">
+                <label for="product-image">Фото</label>
+                <input type="file" name="product-image" id="product-image">
+            </div>
+            <div class="row">
+                <label for="category-image">Категорія</label>
+                <select name="category" id="category">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <label for="short-description">Короткий опис продукту</label>
+                <textarea name="short-description" id="short-description"></textarea>
+            </div>
+            <div class="row">
+                <label for="html-description">Детальний опис продукту</label>
+
+                <div class="desc-container">
+                    <div class="formating">
+                        <div class="formating-btns">
+                            <div class="format b"><b>B</b></div>
+                            <div class="format i"><i>I</i></div>
+                            <div class="format s"><s>S</s></div>
+                            <div class="format h1">H1</div>
+                            <div class="format h2">H2</div>
+                            <div class="format h3">H3</div>
+                            <div class="format li"><i class="bi bi-list-ul"></i></div>
+                        </div>
+                        <div class="formating-info">
+                            <i class="bi bi-info-circle-fill"></i>
+                        </div>
+                    </div>
+                    <textarea class="html-description" name="html-description" id="html-description"></textarea>
+                </div>
+            </div>
+
+            <div id="message_product"></div>
+            <button class="btn" id="reg-btn">Додати товар</button>
+        </form>
+    {% endif %}
+</div>

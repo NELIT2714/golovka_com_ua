@@ -1,0 +1,41 @@
+<div class="admin-info-window">
+    <div class="admin-info">
+        <div class="admin-info-title">
+            Меню адміністратора
+        </div>
+        <div class="admin-info-content">
+            Виберіть необхідну кнопку для управління контентом сайту.
+        </div>
+    </div>
+    <div class="admin-btns">
+        <div class="col">
+            <button data-target="categories_admin" class="admin-btn">Категорії</button>
+            <button data-target="products_admin" class="admin-btn">Продукти</button>
+        </div>
+        <div class="col">
+            <button data-target="admins" class="admin-btn">Адміністратори</button>
+            <button data-target="settings" class="admin-btn">Налатування сайту</button>
+        </div>
+        <div class="col">
+            <button data-target="users" class="admin-btn">Користувачі</button>
+            <!-- <button data-target="news" class="admin-btn">Новини</button> -->
+        </div>
+    </div>
+
+    <script>
+        $('.admin-btn').click(function() {
+            let targetUrl = $(this).data("target");
+
+            $.ajax({
+                type: "POST",
+                url: `/${targetUrl}/`,
+                success: function(response) {
+                    $(".admin-info-window").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+</div>

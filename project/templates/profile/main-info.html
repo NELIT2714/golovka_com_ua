@@ -1,0 +1,55 @@
+<div class="main-info-window">
+    <div class="col">
+        <form class="info-form" id="main-user-info">
+            <div class="form-title">
+                Загальна інформація
+            </div>
+            
+            <div class="row">
+                <label for="id">ID</label>
+                <input type="text" name="id" id="id" value="#{{ user.id }} {% if user.admin %}(Адміністратор){% endif %}" readonly disabled>
+            </div>
+            <div class="row">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="{{ user.email }}" readonly disabled>
+            </div>
+
+            <div class="form-title">
+                Інформація для доставки
+            </div>
+
+            <div class="user-main-info">
+                <div class="col">
+                    <div class="row">
+                        <label for="email">Ім'я</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                    <div class="row">
+                        <label for="email">Прізвище</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                    <div class="row">
+                        <label for="email">По батькові</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <label for="city">Місто</label>
+                        <input type="text" name="city" id="city">
+                    </div>
+                    <div class="row">
+                        <label for="adress">Адреса почтового відділення</label>
+                        <input type="text" name="adress" id="adress">
+                    </div>
+                    <div class="row">
+                        <label for="email">Номер телефону</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                </div>
+            </div>
+            <div id="message"></div>
+            <button class="btn" type="submit">Записати інформацію</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "db": {
+        "host": "localhost",
+        "user": "root",
+        "database": "golovka",
+        "password": "root",
+        "port": 3036
+    },
+    "web": {
+        "secret-key": "secret"
+    }
+}

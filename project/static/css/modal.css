@@ -1,0 +1,68 @@
+.overlay {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 20;
+    transition: .3s all;
+}
+
+.modal {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    box-shadow: 0 3px 10px -0.5px rgb(0 0 0 / 20%);
+    padding: 2rem;
+    background-color: white;
+    transition: 0.3s all;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: auto;
+}
+
+.add-product {
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 15pt;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.modal-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Active */
+
+.modal.active,
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-empty {
+    justify-content: center !important;
+}
+
+.cart-info {
+    font-size: 15pt;
+}

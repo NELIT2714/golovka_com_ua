@@ -1,0 +1,9 @@
+.contacts-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.contact-info {
+    width: 40rem;
+}

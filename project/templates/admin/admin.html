@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golovka - Адмін панель</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <main>
+        <section class="section">
+            <div class="section-content">
+                <h1>Таблиця всіх продуктів</h1>
+                <table class="product-table">
+                    <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>Ім'я продукту</th>
+                            <th>Ціна ($)</th>
+                            <th>Категорія</th>
+                            <th>Дата додавання</th>
+                        </tr>
+                        {% for product in products %}
+                        <tr id="{{ product[0].id }}">
+                            <td id="id">{{ product[0].id }}</td>
+                            <td><a href="/catalog/{{ product[0].category_id }}/product/{{ product[0].id }}" target="_blank">{{ product[0].name }}</a></td>
+                            <td>{{ product[0].price }}$</td>
+                            <td>{{ product[1] }}</td>
+                            <td>{{ product[0].date }}</td>
+                            <td><button>Редагувати</button></td>
+                            <td><button>Видалити</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="table-info">
+                    Загальна кількість продуктів: {{ len(products) }}
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-content">
+                <h1>Таблиця всіх категорій</h1>
+                <table class="categories-table">
+                    <tr>
+                        <th>#</th>
+                        <th>Ім'я категорії</th>
+                    </tr>
+                    {% for category in categories %}
+                    <tr id="{{ category.id }}">
+                        <td id="id">{{ category.id }}</td>
+                        <td><a href="/catalog/{{ category.id }}" target="_blank">{{ category.name }}</a></td>
+                        <td><button>Редагувати</button></td>
+                        <td><button>Видалити</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-content">
+                <h1>Додати новий продукт</h1>
+                <form class="form" id="add-product" enctype="multipart/form-data">
+                    <div class="row">
+                        <label for="name">Назва товару</label>
+                        <input type="text" name="name" id="name" placeholder="Назва продукту" required>
+                    </div>
+                    <div class="row">
+                        <label for="price">Ціна в $ (буде сконвертовано в грн.)</label>
+                        <input type="number" name="price" id="price" placeholder="Ціна в $ (буде сконвертовано в грн.)">
+                    </div>
+                    <div class="row">
+                        <label for="product-image">Фото</label>
+                        <input type="file" name="product-image" id="product-image" required>
+                    </div>
+                    <div class="row">
+                        <label for="category-image">Категорія</label>
+                        <select name="category" id="category">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label for="short-description">Короткий опис продукту</label>
+                        <textarea name="short-description" id="short-description"></textarea>
+                    </div>
+                    <div class="row">
+                        <label for="html-description">Детальний опис продукту</label>
+        
+                        <div class="desc-container">
+                            <div class="formating">
+                                <div class="formating-btns">
+                                    <div class="format b"><b>B</b></div>
+                                    <div class="format i"><i>I</i></div>
+                                    <div class="format s"><s>S</s></div>
+                                    <div class="format h1">H1</div>
+                                    <div class="format h2">H2</div>
+                                    <div class="format h3">H3</div>
+                                    <div class="format li"><i class="bi bi-list-ul"></i></div>
+                                </div>
+                                <div class="formating-info">
+                                    <i class="bi bi-info-circle-fill"></i>
+                                </div>
+                            </div>
+                            <textarea class="html-description" name="html-description" id="html-description" style="height: 20rem;"></textarea>
+                        </div>
+                    </div>
+        
+                    <div id="message_product"></div>
+                    <button class="btn" id="reg-btn">Додати товар</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-content">
+                <h1>Створити нову категорію</h1>
+                <form class="form" id="add-category" enctype="multipart/form-data">
+                    <div class="row">
+                        <label for="category-name">Назва категорії</label>
+                        <input type="text" name="category-name" id="category-name" placeholder="Назва категорії" required>
+                    </div>
+                    <div class="row">
+                        <label for="category-image">Фото категорії</label>
+                        <input type="file" name="category-image" id="category-image" required>
+                    </div>
+
+                    <div id="message_category"></div>
+                    <button class="btn" id="reg-btn">Створити категорію</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <template id="modal-template">
+        <div class="modal">
+            <div class="modal-title">
+
+            </div>
+            <div class="modal-content">
+                <div class="modal-text">
+
+                </div>
+                <div class="modal-btns">
+                    <button type="button" class="btn"></button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="overlay js-overlay-modal"></div>
+
+    <script src="{{ url_for('static', filename='js/jquery-3.6.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>
